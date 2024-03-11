@@ -230,7 +230,7 @@
 				<h2>Analitica de Grupos</h2>
 			</div>
 				<div class="chartbox">
-					<canvas class="" id="grafica" ></canvas>
+					
 				</div>			
 		</div>
 		
@@ -371,18 +371,13 @@
 			<div class="balance-card">
 				<div class="balance-card-top">
 					<div class="text">
-						<h3>Total Income</h3>
-						<h1>$70,452<sub>(USD)</sub></h1>
-					</div>
-					<div class="icon">
-						<i class="fa-solid fa-arrow-up"></i>
-					</div>
+						<h3>Total Income</h3>		
+					</div>					
 				</div>
 				<div class="balance-card-middle">
-					<div class="subject">Progress</div>
-					<div class="progress-bar">
-						<div class="progress-line" value="93%" style="max-width: 93%"></div>
-					</div>
+					<div class="piegraphiccontainer">
+						<div class="pie"id="pie-chart"></div>
+					</div>					
 				</div>
 				<div class="balance-card-bottom">
 					<button class="btn-top-up">
@@ -406,33 +401,42 @@
 <!--   *** Link To Custom Script File ***   -->
 <script type="text/javascript" src="/scripts/admin-nginx-debian.js"></script>
 <script type="module" src="/scripts/charts/chart_line_time_group.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
-	const ctx = document.getElementById('grafica');
-	
-
+	// Obtener el token del LocalStorage
+	const token = localStorage.getItem('token');
   
-	new Chart(ctx, {
-	  type: 'bar',
-	  data: {
-		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-		datasets: [{
-		  label: '# of Votes',
-		  data: [12, 19, 3, 5, 2, 3],
-		  borderWidth: 1
-		}]
-	  },
-	  options: {
-		mainainAspectRatio:false,
-		scales: {
-		  y: {
-			beginAtZero: true
-		  }
+	// Verificar si el token está presente
+	if (!token) {
+	  console.error('No se encontró el token en el LocalStorage');
+	  // Manejar la falta de token, como redirigir a la página de inicio de sesión
+	  // O mostrar un mensaje de error al usuario
+	} else {
+	  // Realiza una solicitud AJAX para obtener el JSON del servidor
+	  fetch("http://10.10.1.28:5000/api/filtrarTenantEmails_graph", {
+		method: 'GET',
+		mode: 'cors',
+		credentials: 'same-origin',
+		headers: {
+		  'Content-Type': 'application/json',
+		  'Authorization': `Bearer ${token}`
 		}
-	  }
-	});
+	  })
+		.then(response => {
+		  if (response.ok) {
+			return response.json();
+		  } else {
+			throw new Error('La solicitud no fue exitosa');
+		  }
+		})
+		.then(jsonFig => {
+		  // Dibuja el gráfico con Plotly
+		  var figData = JSON.parse(jsonFig).data;
+		  var figLayout = JSON.parse(jsonFig).layout;
+		  Plotly.newPlot('pie-chart', figData, figLayout);
+		})
+		.catch(error => console.error('Error:', error));
+	}
   </script>
 </body>
-
 </html>

@@ -169,6 +169,19 @@ form.sign-in-form {
   align-items: center;
   display: none; 
 }
+.loader_sign-in{
+  pointer-events: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  animation: an1 1s ease infinite;
+  margin-left: 60px;
+  text-align: center;
+  align-items: center;
+  display: none; 
+}
 @keyframes an1{
 
   0%{
@@ -177,6 +190,12 @@ form.sign-in-form {
   100%{
     transform: rotate(1turn);
   }
+}
+.container-error{
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .panels-container {

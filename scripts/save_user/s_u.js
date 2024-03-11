@@ -2,10 +2,16 @@ function SaveUsers(){
   const nombre = document.getElementById("username_register").value;
   const correo = document.getElementById("email_register").value;
   const contrasena = document.getElementById("password_register").value;
+  ShowLoaderButtom();
 
   const fechaActual = new Date();
   const formattedDate = `${fechaActual.getFullYear()}-${(fechaActual.getMonth() + 1).toString().padStart(2, '0')}-${fechaActual.getDate().toString().padStart(2, '0')}T${fechaActual.getHours().toString().padStart(2, '0')}:${fechaActual.getMinutes().toString().padStart(2, '0')}:${fechaActual.getSeconds().toString().padStart(2, '0')}`;
 
+  if (nombre.trim() === '' || correo.trim() === '' || contrasena.trim()==='') {
+    HideLoaderButtom();
+    return console.log("{SaveUsers/index_nginx-dbian.html} Verificado en los campos vacíos en Guardar Users");
+  } 
+  
   fetch('http://10.10.1.28:5000/api/users')
     .then(response => response.json())
     .then(data => {
@@ -13,6 +19,7 @@ function SaveUsers(){
 
       if (correoExiste) {
         alert('Estas credenciales ya están en uso. ¿Deseas iniciar sesión?');
+        HideLoaderButtom();
       } else {
         
         const data = {
@@ -41,19 +48,33 @@ function SaveUsers(){
           if (data.mensaje === 'usuario guardado exitosamente') {
             console.log('Guardado exitosamente', data, JSON);
             // alert('Usuario guardado exitosamente');
+            
           } else {
             console.error('Error al guardar usuario:', data.mensaje);
             // alert('Error al guardar usuario. Por favor, inténtalo de nuevo.');
+            HideLoaderButtom();
           }
         })
         .catch(error => {
           console.error('Error inesperado al intentar guardar usuario:', error);
+          HideLoaderButtom();
           // alert('Se produjo un error al intentar guardar usuario. Por favor, inténtalo de nuevo más tarde.');
         });
       }
     })
     .catch(error => {
       console.error('Error al obtener usuarios:', error);
+      HideLoaderButtom();
       alert('Se produjo un error al obtener usuarios. Por favor, inténtalo de nuevo.');
     });
+}
+
+function HideLoaderButtom(){
+  const btnhideloader = document.getElementById('loader_sign-in')
+  btnhideloader.style.display = 'none';
+}
+
+function ShowLoaderButtom(){
+  const btnshowloader = document.getElementById('loader_sign-in')
+  btnshowloader.style.display = 'block';
 }
