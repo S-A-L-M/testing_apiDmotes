@@ -20,14 +20,17 @@ function VerifyLogin() {
   const correo = document.getElementById('correo_login').value;
   const password = document.getElementById('password_login').value;
   const labelCodigo = document.getElementById('label-content');
+  const containererror = document.getElementById('container-error_sign-in');
   ShowLoaderButtom()
   document.getElementById('loader').disabled = true;
   if (correo.trim() === '' || password.trim() === '') {
-    labelCodigo.textContent = `Error: ¡Whoops! El usuario o la contraseña que has ingreso parece estar incorrecta.`;
-    HideLoaderButtom()
+    labelCodigo.innerHTML = `Error: ¡¿?! El usuario o la contraseña no pueden estar vacíos.`.replace('Error', '<strong>Error</strong>');
+    containererror.style.display = 'block';
+    HideLoaderButtom();
     return console.log("{verify_user/index_nginx-debian.html} Verificado en los campos vacíos");
     
   }
+  if(navigator.onLine){
 
   fetch('http://10.10.1.28:5000/api/login', {
     method: 'POST',
@@ -43,7 +46,10 @@ function VerifyLogin() {
         return response.json();
       } else {
         HideLoaderButtom()
+        labelCodigo.innerHTML = `Error: ¡¿?! El usuario o la contraseña incorrectos(s).`.replace('Error', '<strong>Error</strong>');
+        containererror.style.display = 'block';
         throw new Error('Ha ocurrido un error en las credenciales');
+        
       }
     })
     .then(data => {
@@ -64,13 +70,17 @@ function VerifyLogin() {
       } else {
         console.error('Credenciales inválidas');
         HideLoaderButtom()
-        alert('Correo o contraseña incorrectos. Por favor, inténtalo de nuevo.');
+        // alert('Correo o contraseña incorrectos. Por favor, inténtalo de nuevo.');
+        containererror.style.display = 'block';
+        labelCodigo.innerHTML = `Error: ¡Whoops! El usuario o la contraseña incorrectos(s).`.replace('Error','<strong>Error</strong>');
       }
     })
     .then(response => {
       if (response.ok) {
         return response.json();
       } else {
+        containererror.style.display = 'block';
+        labelCodigo.innerHTML = `Error500: ¡! Ha ocurrido un error en el servidor. Intente mas Tarde.`.replace('Error','<strong>Error</strong>');
         throw new Error('Error al obtener datos de la API');
       }
     })
@@ -80,11 +90,14 @@ function VerifyLogin() {
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('Se produjo un error. Por favor, inténtalo de nuevo más tarde.');
+      // alert('Se produjo un error. Por favor, inténtalo de nuevo más tarde.');
+      containererror.style.display = 'block';
+      labelCodigo.innerHTML = `Error: ¡Whoops! El usuario o la contraseña incorrectos(s).`.replace('Error','<strong>Error</strong>');
     })
     .finally(() => {
       HideLoaderButtom()
     });
+}
 }
 
 function HideLoaderButtom(){

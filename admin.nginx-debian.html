@@ -230,10 +230,17 @@
 				<h2>Analitica de Grupos</h2>
 			</div>
 				<div class="chartbox">
-					
+					<div class="line-chart"id="line-chart"></div>		
 				</div>			
 		</div>
-		
+		<div class="chart">
+			<div class="chart-header">
+				<h2>Porcentajes de Grupos</h2>
+			</div>
+				<div class="chartbox">
+					<div class="donut-chart"id="donut-chart"></div>
+				</div>			
+		</div>
 		<!--   === Analytics Chart Ends ===   -->
 	</div>
 		<!--   === Column 1 Ends ===   -->
@@ -371,12 +378,12 @@
 			<div class="balance-card">
 				<div class="balance-card-top">
 					<div class="text">
-						<h3>Total Income</h3>		
+						<h3>Total Status</h3>			
 					</div>					
 				</div>
-				<div class="balance-card-middle">
+				<div class="balance-card-middle">	
 					<div class="piegraphiccontainer">
-						<div class="pie"id="pie-chart"></div>
+							<div class="pie"id="pie-chart"></div>		
 					</div>					
 				</div>
 				<div class="balance-card-bottom">
@@ -400,19 +407,14 @@
 <!--   *** Page Wrapper Ends ***   -->
 <!--   *** Link To Custom Script File ***   -->
 <script type="text/javascript" src="/scripts/admin-nginx-debian.js"></script>
-<script type="module" src="/scripts/charts/chart_line_time_group.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
-	// Obtener el token del LocalStorage
 	const token = localStorage.getItem('token');
-  
-	// Verificar si el token está presente
+	
 	if (!token) {
 	  console.error('No se encontró el token en el LocalStorage');
-	  // Manejar la falta de token, como redirigir a la página de inicio de sesión
-	  // O mostrar un mensaje de error al usuario
 	} else {
-	  // Realiza una solicitud AJAX para obtener el JSON del servidor
+	  // Solicitar datos para el gráfico de pastel
 	  fetch("http://10.10.1.28:5000/api/filtrarTenantEmails_graph", {
 		method: 'GET',
 		mode: 'cors',
@@ -422,21 +424,73 @@
 		  'Authorization': `Bearer ${token}`
 		}
 	  })
-		.then(response => {
-		  if (response.ok) {
-			return response.json();
-		  } else {
-			throw new Error('La solicitud no fue exitosa');
-		  }
-		})
-		.then(jsonFig => {
-		  // Dibuja el gráfico con Plotly
-		  var figData = JSON.parse(jsonFig).data;
-		  var figLayout = JSON.parse(jsonFig).layout;
-		  Plotly.newPlot('pie-chart', figData, figLayout);
-		})
-		.catch(error => console.error('Error:', error));
+	  .then(response => {
+		if (response.ok) {
+		  return response.json();
+		} else {
+		  throw new Error('La solicitud no fue exitosa');
+		}
+	  })
+	  .then(jsonFig => {
+		// Parsear la respuesta JSON
+		const data = JSON.parse(jsonFig);
+  
+		// Crear el gráfico de pastel con Plotly
+		Plotly.newPlot('pie-chart', data.data, data.layout);
+	  })
+	  .catch(error => console.error('Error en gráfico de pastel:', error));
+  
+	  // Solicitar datos para el gráfico de líneas
+	  fetch("http://10.10.1.28:5000/api/filtrarTenantEmails_line", {
+		method: 'GET',
+		mode: 'cors',
+		credentials: 'same-origin',
+		headers: {
+		  'Content-Type': 'application/json',
+		  'Authorization': `Bearer ${token}`
+		}
+	  })
+	  .then(response => {
+		if (response.ok) {
+		  return response.json();
+		} else {
+		  throw new Error('La solicitud no fue exitosa');
+		}
+	  })
+	  .then(jsonFig => {
+		// Parsear la respuesta JSON
+		const data = JSON.parse(jsonFig);
+  
+		// Crear el gráfico de líneas con Plotly
+		Plotly.newPlot('line-chart', data.data, data.layout);
+	  })
+	  .catch(error => console.error('Error en gráfico de líneas:', error));
 	}
+	  fetch("http://10.10.1.28:5000/api/grafictype_alert",{
+		method: 'GET',
+		mode: 'cors',
+		credentials: 'same-origin',
+		headers:{
+			'Content-Type': 'application/json',
+		  	'Authorization': `Bearer ${token}`
+		}
+	  })
+	  .then(response => {
+		if (response.ok) {
+		  return response.json();
+		} else {
+		  throw new Error('La solicitud no fue exitosa');
+		}
+	  })
+	  .then(jsonFig => {
+		// Parsear la respuesta JSON
+		const data = JSON.parse(jsonFig);
+  
+		// Crear el gráfico de líneas con Plotly
+		Plotly.newPlot('donut-chart', data.data, data.layout);
+	  })
+	  .catch(error => console.error('Error en gráfico:', error));
   </script>
+  
 </body>
 </html>

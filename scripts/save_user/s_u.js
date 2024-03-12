@@ -2,6 +2,8 @@ function SaveUsers(){
   const nombre = document.getElementById("username_register").value;
   const correo = document.getElementById("email_register").value;
   const contrasena = document.getElementById("password_register").value;
+  const containererror = document.getElementById('container-error_sign-up');
+  const labelCodigo = document.getElementById('container-error_sign-up');
   ShowLoaderButtom();
 
   const fechaActual = new Date();
@@ -9,15 +11,19 @@ function SaveUsers(){
 
   if (nombre.trim() === '' || correo.trim() === '' || contrasena.trim()==='') {
     HideLoaderButtom();
+    labelCodigo.innerHTML = `Error: ¡¿?! El usuario, la contraseña y/o no pueden estar vacío(s).`.replace('Error', '<strong>Error</strong>');
+    containererror.style.display = 'block';
     return console.log("{SaveUsers/index_nginx-dbian.html} Verificado en los campos vacíos en Guardar Users");
   } 
-  
+  if(navigator.onLine){
   fetch('http://10.10.1.28:5000/api/users')
     .then(response => response.json())
     .then(data => {
       const correoExiste = data.some(usuario => usuario.email === correo);
 
       if (correoExiste) {
+        labelCodigo.innerHTML = `Error: ¡¿?! El usuario y/o la contraseña ya se encuentran registrado(s).`.replace('Error', '<strong>Error</strong>');
+        containererror.style.display = 'block';
         alert('Estas credenciales ya están en uso. ¿Deseas iniciar sesión?');
         HideLoaderButtom();
       } else {
@@ -67,6 +73,7 @@ function SaveUsers(){
       HideLoaderButtom();
       alert('Se produjo un error al obtener usuarios. Por favor, inténtalo de nuevo.');
     });
+}
 }
 
 function HideLoaderButtom(){

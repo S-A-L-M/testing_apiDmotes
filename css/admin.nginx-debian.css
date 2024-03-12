@@ -26,7 +26,7 @@ body.active{
 body{
 	position: relative;
 	width: 100%;
-	max-width: 2000px;
+	max-width: 5000px;
 	height: 100vh;
 	max-height: 100vh;
 	overflow: hidden;
@@ -546,11 +546,7 @@ ul.navbar-links li.active a .nav-text{
 	border: solid 3px rgba(255 , 26, 104, 1);
 	background: white; */
 }
-@media (min-width: 670px) and (max-width: 868px) {
-    .chartbox {
-        width: 550px;
-    }
-}
+
 .chart-value-wrapper .chart-value::before{
 	content: '';
 	position: absolute;
@@ -561,14 +557,6 @@ ul.navbar-links li.active a .nav-text{
 	border-radius: 100px / 30px;
 	background-color: #038d4c;
 }
-.piegraphiccontainer{
-	width: 290px;
-	height: 290px;
-	/* position: relative; */
-	/* margin-top: -50px; */
-	/* margin: -190; */
-	/* padding: -40px ; */
-}
 .chart-contents .chart-labels{
 	position: absolute;
 	width: 100%;
@@ -577,6 +565,7 @@ ul.navbar-links li.active a .nav-text{
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	padding-left: 50px;
+
 }
 .chart-contents .chart-labels div{
 	color: var(--text-clr);
@@ -816,6 +805,28 @@ ul.navbar-links li.active a .nav-text{
 /*   === Code For Description Ends ===   */
 /*   === Code For Contents Ends ===   */
 
+/*   === Graphics === */
+
+.piegraphiccontainer{
+	position: relative;
+	display: flex;
+	justify-content: center !important;
+	text-align: center !important;
+	/* size: 90px; */
+}
+.line-chart{
+	position: relative;
+	display: flex;
+	justify-content: center !important;
+	text-align: center !important;
+	size: 90px;
+}
+.donut-chart{
+	position: relative;
+	display: flex;
+	justify-content: center !important;
+	text-align: center !important;
+}
 
 /*   === Media Query Starts ===   */
 @media(max-width: 1068px){
@@ -875,6 +886,7 @@ ul.navbar-links li.active a .nav-text{
 @media(max-width: 868px){
 	.contents .description{
 		grid-template-columns: 1fr;
+
 	}
 }
 @media(max-width: 668px){
@@ -926,3 +938,5 @@ ul.navbar-links li.active a .nav-text{
 		font-size: 14px;
 	}
 }
+
+	
