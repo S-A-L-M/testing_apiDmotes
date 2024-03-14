@@ -58,7 +58,7 @@
 				<span class="nav-icon">
 					<i class="fa-solid fa-house"></i>
 				</span>
-				<span class="nav-text">Opcion1</span>
+				<span class="nav-text">Home</span>
 			</a>
 		</li>
 		<li>
@@ -171,7 +171,7 @@
 	<!--   === Panel Bar Starts ===   -->
 	<div class="panel-bar">
 		<div class="row-1">
-			<h1>Products</h1>
+			<h1>Dashboard</h1>
 		</div>
 		<div class="row-2">
 			<a href="#"class="active">Overwiew</a>
@@ -190,8 +190,8 @@
 			<div class="balance-box">
 				<div class="subject-row">
 					<div class="text">
-						<h3>Total Income</h3>
-						<h1>$70,452<sub>(USD)</sub></h1>
+						<h3>Usuarios Registrados</h3>
+						<h1 id="count-users"></h1>
 					</div>
 					<div class="icon">
 						<i class="fa-solid fa-arrow-up"></i>
@@ -209,10 +209,10 @@
 				<div class="subject-row">
 					<div class="text">
 						<h3>Total Expense</h3>
-						<h1>$64,261<sub>(USD)</sub></h1>
+						<h1 id="count-groups"><sub></sub></h1>
 					</div>
 					<div class="icon">
-						<i class="fa-solid fa-arrow-down"></i>
+						<i class="fa-solid fa-arrow-up"></i>
 					</div>
 				</div>
 				<div class="progress-row">
@@ -227,18 +227,26 @@
 		<!--   === Analytics Chart Starts ===   -->
 		<div class="chart">
 			<div class="chart-header">
-				<h2>Analitica de Grupos</h2>
+					<div class="loadercard">
+						<h2>Analitica de Grupos</h2>
+					</div>
 			</div>
-				<div class="chartbox">
-					<div class="line-chart"id="line-chart"></div>		
+				<div class="loadercard">
+					<div class="chartbox">
+						<div class="line-chart"id="line-chart"></div>		
+					</div>
 				</div>			
 		</div>
 		<div class="chart">
 			<div class="chart-header">
-				<h2>Porcentajes de Grupos</h2>
+				<div class="loadercard">
+					<h2>Porcentajes de Grupos</h2>
+				</div>
 			</div>
-				<div class="chartbox">
-					<div class="donut-chart"id="donut-chart"></div>
+				<div class="loadercard">
+					<div class="chartbox">
+						<div class="donut-chart"id="donut-chart"></div>
+					</div>
 				</div>			
 		</div>
 		<!--   === Analytics Chart Ends ===   -->
@@ -378,13 +386,17 @@
 			<div class="balance-card">
 				<div class="balance-card-top">
 					<div class="text">
-						<h3>Total Status</h3>			
+						<div class="loadercard">
+							<h3>Total Status</h3>
+						</div>			
 					</div>					
 				</div>
-				<div class="balance-card-middle">	
-					<div class="piegraphiccontainer">
-							<div class="pie"id="pie-chart"></div>		
-					</div>					
+				<div class="balance-card-middle">
+					<div class="loadercard">						
+						<div class="piegraphiccontainer">
+								<div class="pie"id="pie-chart"></div>	
+						</div>	
+					</div>				
 				</div>
 				<div class="balance-card-bottom">
 					<button class="btn-top-up">
@@ -407,90 +419,7 @@
 <!--   *** Page Wrapper Ends ***   -->
 <!--   *** Link To Custom Script File ***   -->
 <script type="text/javascript" src="/scripts/admin-nginx-debian.js"></script>
+<script type="text/javascript" src="/scripts/charts/chat_dashboard.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script>
-	const token = localStorage.getItem('token');
-	
-	if (!token) {
-	  console.error('No se encontró el token en el LocalStorage');
-	} else {
-	  // Solicitar datos para el gráfico de pastel
-	  fetch("http://10.10.1.28:5000/api/filtrarTenantEmails_graph", {
-		method: 'GET',
-		mode: 'cors',
-		credentials: 'same-origin',
-		headers: {
-		  'Content-Type': 'application/json',
-		  'Authorization': `Bearer ${token}`
-		}
-	  })
-	  .then(response => {
-		if (response.ok) {
-		  return response.json();
-		} else {
-		  throw new Error('La solicitud no fue exitosa');
-		}
-	  })
-	  .then(jsonFig => {
-		// Parsear la respuesta JSON
-		const data = JSON.parse(jsonFig);
-  
-		// Crear el gráfico de pastel con Plotly
-		Plotly.newPlot('pie-chart', data.data, data.layout);
-	  })
-	  .catch(error => console.error('Error en gráfico de pastel:', error));
-  
-	  // Solicitar datos para el gráfico de líneas
-	  fetch("http://10.10.1.28:5000/api/filtrarTenantEmails_line", {
-		method: 'GET',
-		mode: 'cors',
-		credentials: 'same-origin',
-		headers: {
-		  'Content-Type': 'application/json',
-		  'Authorization': `Bearer ${token}`
-		}
-	  })
-	  .then(response => {
-		if (response.ok) {
-		  return response.json();
-		} else {
-		  throw new Error('La solicitud no fue exitosa');
-		}
-	  })
-	  .then(jsonFig => {
-		// Parsear la respuesta JSON
-		const data = JSON.parse(jsonFig);
-  
-		// Crear el gráfico de líneas con Plotly
-		Plotly.newPlot('line-chart', data.data, data.layout);
-	  })
-	  .catch(error => console.error('Error en gráfico de líneas:', error));
-	}
-	  fetch("http://10.10.1.28:5000/api/grafictype_alert",{
-		method: 'GET',
-		mode: 'cors',
-		credentials: 'same-origin',
-		headers:{
-			'Content-Type': 'application/json',
-		  	'Authorization': `Bearer ${token}`
-		}
-	  })
-	  .then(response => {
-		if (response.ok) {
-		  return response.json();
-		} else {
-		  throw new Error('La solicitud no fue exitosa');
-		}
-	  })
-	  .then(jsonFig => {
-		// Parsear la respuesta JSON
-		const data = JSON.parse(jsonFig);
-  
-		// Crear el gráfico de líneas con Plotly
-		Plotly.newPlot('donut-chart', data.data, data.layout);
-	  })
-	  .catch(error => console.error('Error en gráfico:', error));
-  </script>
-  
 </body>
 </html>
