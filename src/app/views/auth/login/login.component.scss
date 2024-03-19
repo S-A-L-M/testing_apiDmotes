@@ -103,7 +103,6 @@ h1 {
     color: #e3e3e3 !important;
 }
 
-
 /* Custom Form*/
 
 .form-control {
@@ -177,7 +176,7 @@ input.mat-input-element {
 }
 
 #buttonlogin:hover {
-    box-shadow: inset 700px 0 0 0 #260063;
+    box-shadow: inset 1000px 0 0 0 #260063;
     cursor: pointer;
     color: #ffffff;
 }
@@ -196,12 +195,6 @@ input.mat-input-element {
     overflow: hidden;
     border: 30px;
     border-radius: 50px;
-    visibility: hidden;
-    /* Inicialmente oculto */
-    opacity: 0;
-    /* Opacidad inicial */
-    transition: visibility 0s, opacity 0.5s linear;
-    /* Transición suave */
 }
 
 #bar.show {

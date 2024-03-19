@@ -36,7 +36,7 @@
           </div>
 
 
-          <div id="bar">
+          <div id="bar" *ngIf="showLoader">
               <div>
 
               </div>
@@ -48,7 +48,7 @@
                     <p>
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label class="text-white">Email</mat-label>
-                            <input matInput placeholder="User@example.com" type="email" formControlName="email" class="text-white" autocomplete="username">
+                            <input matInput placeholder="User@example.com" type="email" formControlName="email" id="input_email_sign_in" class="text-white" autocomplete="username">
                             <mat-icon matSuffix class="text-white">account_circle</mat-icon>
                         </mat-form-field>
                     </p>
@@ -75,8 +75,9 @@
                   <button type="button" class="btn btn-outline-light flex-grow-1 ml-2"><i class="fab fa-facebook-f lead mr-2"></i> Facebook</button>
               </div>
           </div>
-          <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100 text-white">
-              <p class="d-inline-block mb-0 text-white">¿Todavia no tienes una cuenta?</p> <a href="" id="create_new_account" class="text-light font-weight-bold text-decoration-none text-white">Crea una ahora</a>
+          <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100 text-white" id="newAccount">
+            <p class="d-inline-block mb-0 text-white">¿Todavía no tienes una cuenta?</p>
+            <a routerLink="/register" id="create_new_account" class="text-light font-weight-bold text-decoration-none text-white">Crea una ahora</a>
           </div>
       </div>
   </div>

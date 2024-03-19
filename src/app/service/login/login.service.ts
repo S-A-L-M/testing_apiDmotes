@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginI } from '../models/login.interface';
-import { ResponseI } from '../models/response.interface';
+import { LoginI } from 'src/app/models/register/register.interface';
+import { ResponseI } from '../../models/login/response.interface';
+import { environment } from 'src/environments/login/environment';
 
 
 @Injectable({
@@ -10,8 +11,7 @@ import { ResponseI } from '../models/response.interface';
 })
 export class LoginService {
 
-  url:string = 'http://54.221.48.204:3333/api/v2/login';
-
+  url:string = environment.URL_API + 'inicio';
   constructor(private http: HttpClient) { }
 
   LoginByEmail(form:LoginI){
