@@ -32,6 +32,7 @@ export class SigninService {
 
   getLocalStorage() {
    return localStorage.getItem('authToken');
+   
   }
 }
 
