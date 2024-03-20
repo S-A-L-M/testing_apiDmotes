@@ -33,7 +33,7 @@ import { Error404Component } from './views/error404/error404.component';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

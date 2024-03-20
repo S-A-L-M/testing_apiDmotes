@@ -6,8 +6,9 @@ import { Error404Component } from './views/error404/error404.component';
 
 const routes: Routes = [
   { path: 'signin', component: SigninComponent },
-  { path: 'signup', component: SignupComponent }, 
+  { path: 'signup', component: SignupComponent },
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
+  { path: 'dashboard', loadChildren: () => import('../app/views/dashboard/dashboard-routing.module').then(module => module.DashboardRoutingModule) },
   { path: '**', component: Error404Component }
 ];
 

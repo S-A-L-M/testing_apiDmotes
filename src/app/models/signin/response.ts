@@ -1,4 +1,4 @@
-export interface Response {
-    status:string;
-    response:string;
+export interface Token {
+    token: string;
+  expires_at: string;
 }

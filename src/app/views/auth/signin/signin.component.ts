@@ -2,32 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SigninService } from 'src/app/services/signin/signin.service';
-
-
+import { Token } from 'src/app/models/signin/response';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
-export class SigninComponent implements OnInit{
+export class SigninComponent implements OnInit {
   signinForm: FormGroup;
-  showLoader = false; 
+  showLoader = false;
 
   constructor(
     private router: Router,
-    private _loginService: SigninService,
-    private form: FormBuilder
+    private signinService: SigninService,
+    private formBuilder: FormBuilder
   ) {
-    this.signinForm = form.group({
+    this.signinForm = this.formBuilder.group({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
   }
+
   ngOnInit(): void {
     this.signinForm.controls['email'].valueChanges.subscribe();
-    
   }
+
   onLogin() {
     this.showLoader = true;
     this.signinForm.markAllAsTouched();
@@ -38,12 +38,10 @@ export class SigninComponent implements OnInit{
       return alert('No se logró iniciar sesión debido a datos incorrectos.');
     }
   
-    this._loginService.LoginByEmail(this.signinForm.value).subscribe(
-      (data) => {
-        console.log(data);
+    this.signinService.LoginByEmail(this.signinForm.value).subscribe(
+      () => {
         this.showLoader = false;
-        
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
         console.error('Error al iniciar sesión:', error);
