@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './views/auth/signin/signin.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
@@ -12,6 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Error404Component } from './views/error404/error404.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardModule } from './views/dashboard/dashboard.module';
+import { GraphicsComponent } from './views/dashboard/graphics/graphics.component';
+
+
 
 
 
@@ -23,6 +27,8 @@ import { Error404Component } from './views/error404/error404.component';
     SigninComponent,
     SignupComponent,
     Error404Component,
+    GraphicsComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -34,6 +40,7 @@ import { Error404Component } from './views/error404/error404.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DashboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
