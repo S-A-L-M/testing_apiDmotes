@@ -7,12 +7,14 @@ import { DataComponent } from './datas/data.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { MatIconModule } from '@angular/material/icon';  
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     StatisticsComponent,
     DataComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,

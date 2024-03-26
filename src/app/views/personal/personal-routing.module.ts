@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: PersonalComponent,
     children: [
-      { path: '', redirectTo: 'personal', pathMatch: 'full' }, 
+      { path: '', redirectTo: 'values', pathMatch: 'full' }, 
       { path: 'values', component: ValuesComponent }, 
     ]
   },
