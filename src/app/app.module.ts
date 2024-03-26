@@ -14,6 +14,7 @@ import { Error404Component } from './views/error404/error404.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './views/dashboard/dashboard.module';
 import { GraphicsComponent } from './views/dashboard/graphics/graphics.component';
+import { ValuesComponent } from './views/personal/values/values.component';
 
 
 
@@ -28,6 +29,7 @@ import { GraphicsComponent } from './views/dashboard/graphics/graphics.component
     SignupComponent,
     Error404Component,
     GraphicsComponent,
+    ValuesComponent,
    
   ],
   imports: [
@@ -40,7 +42,7 @@ import { GraphicsComponent } from './views/dashboard/graphics/graphics.component
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DashboardModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

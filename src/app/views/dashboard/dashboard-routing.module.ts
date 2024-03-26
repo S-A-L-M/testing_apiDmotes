@@ -5,7 +5,6 @@ import { DashboardComponent } from './dashboard.component';
 import { StatisticsComponent } from './main/statistics.component';
 import { DataComponent } from './datas/data.component';
 import { GraphicsComponent } from './graphics/graphics.component';
-import { PersonalComponent } from '../personal/personal.component';
 
 const routes: Routes = [
   {
@@ -16,7 +15,7 @@ const routes: Routes = [
       { path: 'home', component: StatisticsComponent },     
       { path: 'data', component: DataComponent },
       { path: 'graphics', component: GraphicsComponent },
-      { path: 'personal', component: PersonalComponent}
+      { path: 'personal', loadChildren: () => import('../personal/personal-routing.module').then(module => module.PersonalRoutingModule) },
       
     ]
   },

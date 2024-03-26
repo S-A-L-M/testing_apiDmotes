@@ -4,18 +4,18 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { StatisticsComponent } from './main/statistics.component';
 import { DataComponent } from './datas/data.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Importar NgbModule
 
 @NgModule({
   declarations: [
     DashboardComponent,
     StatisticsComponent,
-    DataComponent
+    DataComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
-    
+    DashboardRoutingModule,
+    NgbModule // Agregar NgbModule al array de imports
   ]
 })
 export class DashboardModule { }
