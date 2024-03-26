@@ -67,6 +67,7 @@ h4 {
     color: #e9ecef;
     font-size: 1.15rem;
     font-weight: 600;
+    position: fixed;
 }
 
 .sidebar-nav {
@@ -75,12 +76,13 @@ h4 {
     margin-bottom: 0;
     padding-left: 0;
     margin-left: 0;
+    position: fixed;
 }
 
 .sidebar-header {
     color: #e9ecef;
     font-size: .75rem;
-    padding: 1.5rem 1.5rem .375rem;
+    padding: 3.0rem 1.5rem .375rem;
 }
 
 a.sidebar-link {
@@ -89,6 +91,23 @@ a.sidebar-link {
     position: relative;
     display: block;
     font-size: 0.875rem;
+    
+}
+a.sidebar-link:hover{
+    color: rgb(185, 185, 185);
+    background-color: #23282c;
+    border-radius: 50px;
+    text-decoration: underline;
+    cursor: pointer;
+
+// .rotated{
+//     display: block;
+//     margin-left: 0;
+//     margin-bottom: 0;
+//     padding-left: 0;
+//     left: 90px;
+// }
+
 }
 
 .sidebar-link[data-bs-toggle="collapse"]::after {
@@ -99,18 +118,21 @@ a.sidebar-link {
     -webkit-font-smoothing: antialiased;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    content: "\f078"; // Código Unicode para el ícono de flecha hacia abajo
+    content: "\f078"; 
     padding: 0;
     position: absolute;
-    right: 1.5rem;
+    left: 12.9rem;
     top: 1.4rem;
     transition: all 0.2s ease-out;
 }
 
 .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
-    transform: rotate(90deg); // Rota la flecha 90 grados cuando está colapsado
+    transform: rotate(90deg); 
+    
 }
-
+.rotated {
+    transform: rotate(180deg); 
+  }
 .avatar {
     height: 40px;
     width: 40px;

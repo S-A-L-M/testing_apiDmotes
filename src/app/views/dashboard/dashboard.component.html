@@ -20,19 +20,22 @@
                     </li>
                     <li class="sidebar-item">
                         <a routerLink="home" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i> Home
+                            <mat-icon>home</mat-icon>
+                             Home
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a routerLink="data" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i> Data
+                        <mat-icon>perm_data_setting</mat-icon>
+                         Data
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" routerLink="personal" (click)="isPostCollapsed = !isPostCollapsed" data-bs-toggle="collapse" data-bs-target="#posts" [attr.aria-expanded]="!isPostCollapsed" aria-controls="posts">
-                            <i class="fa-solid fa-sliders pe-2"></i> Personal
-                            <i class="fa-solid fa-chevron-down ms-auto" [ngClass]="{'rotated': !isPostCollapsed}"></i>
-                        </a>
+                        <a class="sidebar-link " routerLink="personal" (click)="isPostCollapsed = !isPostCollapsed" data-bs-target="#posts" [attr.aria-expanded]="!isPostCollapsed" aria-controls="posts">
+                            <mat-icon>supervised_user_circle</mat-icon>
+                            <span [ngClass]="{'rotated': !isPostCollapsed}">Personal</span>
+                            <i class="fas fa-chevron-down" [ngClass]="{'rotated': !isPostCollapsed}"></i>
+                          </a>
                         <div id="posts" [ngbCollapse]="isPostCollapsed">
                             <ul class="sidebar-dropdown list-unstyled">
                                 <li class="sidebar-item">
@@ -49,7 +52,8 @@
                     </li>
                     <li class="sidebar-item">
                         <a routerLink="graphics" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i> graphics
+                            <mat-icon>graphic_eq</mat-icon>
+                            graphics
                         </a>
                     </li>
                     <li class="sidebar-header">
@@ -111,7 +115,7 @@
                         <div class="col-6 text-start">
                             <p class="mb-0">
                                 <a href="#" class="text-muted">
-                                    <strong>CodzSwod</strong>
+                                    <strong></strong>
                                 </a>
                             </p>
                         </div>

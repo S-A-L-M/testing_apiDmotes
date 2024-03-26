@@ -4,7 +4,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { StatisticsComponent } from './main/statistics.component';
 import { DataComponent } from './datas/data.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Importar NgbModule
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { MatIconModule } from '@angular/material/icon';  
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // Importar NgbModule
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    NgbModule // Agregar NgbModule al array de imports
+    NgbModule,
+    MatIconModule,
+    NgApexchartsModule
   ]
 })
-export class DashboardModule { }
+export class DashboardModule { 
+  title = 'barchartApp';
+  dataset = [
+    { name: "X", value: 1 },
+    { name: "Y", value: 2 }
+  ];
+}

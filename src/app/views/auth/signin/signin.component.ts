@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SigninService } from 'src/app/services/signin/signin.service';
-import { Token } from 'src/app/models/signin/response';
 
 @Component({
   selector: 'app-signin',

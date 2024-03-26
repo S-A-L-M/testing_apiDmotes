@@ -15,7 +15,7 @@
                                 </div>
                             </div>
                             <div class="col-6 align-self-end text-end">
-                                <img src="image/customer-support.jpg" class="img-fluid illustration-img"
+                                <img src="../" class="img-fluid illustration-img"
                                     alt="">
                             </div>
                         </div>
@@ -41,6 +41,18 @@
                                         Since Last Month
                                     </span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Chart Example Bar-->
+            <div class="col-12 col-md-12 d-flex mb-3">
+                <div class="card flex-fill border-0">
+                    <div class="card-body py-4">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-grow-1">
+                                <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [title]="chartOptions.title!"></apx-chart>
                             </div>
                         </div>
                     </div>
@@ -90,5 +102,6 @@
                 </table>
             </div>
         </div>
+        
     </div>
 </main>
