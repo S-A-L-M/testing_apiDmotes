@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './views/dashboard/dashboard.module';
 import { GraphicsComponent } from './views/dashboard/graphics/graphics.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { PersonalComponent } from './views/personal/personal.component';
+
 
 
 
@@ -25,6 +27,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     SignupComponent,
     Error404Component,
     GraphicsComponent,
+    PersonalComponent,
    
   ],
   imports: [

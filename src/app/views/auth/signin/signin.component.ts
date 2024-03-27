@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SigninService } from 'src/app/services/signin/signin.service';
 
@@ -18,29 +18,25 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.signinForm = this.formBuilder.group({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {
-    this.signinForm.controls['email'].valueChanges.subscribe();
-  }
+  ngOnInit(): void {}
 
   onLogin() {
     this.showLoader = true;
-    this.signinForm.markAllAsTouched();
-    this.signinForm.updateValueAndValidity();
-  
     if (this.signinForm.invalid) {
       this.showLoader = false;
-      return alert('No se logró iniciar sesión debido a datos incorrectos.');
+      return alert('Por favor, completa todos los campos.');
     }
-  
-    this.signinService.LoginByEmail(this.signinForm.value).subscribe(
+
+    this.signinService.loginByEmail(this.signinForm.value).subscribe(
       () => {
         this.showLoader = false;
         this.router.navigate(['/dashboard']);
+
       },
       (error) => {
         console.error('Error al iniciar sesión:', error);

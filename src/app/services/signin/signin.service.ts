@@ -17,7 +17,7 @@ export class SigninService {
 
   constructor(private http: HttpClient) {}
 
-  LoginByEmail(form: Signin) {
+  loginByEmail(form: Signin) {
     return this.http.post<Token>(this.url, form).pipe(
       tap((data: Token) => {
         this.token = data.token; 
@@ -25,14 +25,19 @@ export class SigninService {
         localStorage.setItem('authToken', this.token.token);
         localStorage.setItem('tokenExpiration', this.token.expires_at);
         console.log(this.token)
-        console.log(this.expiresat)
+        console.log(this.token.expires_at)
       })
     );
   }
 
-  getLocalStorage() {
-   return localStorage.getItem('authToken');
-   
+  isTokenValid(): boolean {
+    const authToken = localStorage.getItem('authToken');
+    return !!authToken; 
+  }
+
+  logout() {
+    localStorage.removeItem('authToken');
   }
 }
+
 
