@@ -20,6 +20,7 @@ import { PersonalComponent } from './views/personal/personal.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
