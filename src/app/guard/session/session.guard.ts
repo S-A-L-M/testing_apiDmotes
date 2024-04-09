@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
+import { SigninService } from 'src/app/services/signin/signin.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionGuard implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
+  constructor(private signinService: SigninService, private router: Router) {}
+
+  canActivate(): boolean {
+    if (this.signinService.isTokenValid()) {
+      this.router.navigate(['/dashboard/home']); 
+      return false; 
+    }
     return true;
   }
-  
 }
