@@ -1,0 +1,257 @@
+:root {
+    --dark: #16191C;
+    --dark-x: #1E2126;
+    --light: #ffffff;
+    --border-color: #ffffff;
+    --ColorPlaceHolder: #656368;
+    --loaderbarcolor: #30005a;
+}
+
+body {
+    font-family: 'Spartan', sans-serif;
+    font-weight: 300;
+    color: var(--light);
+    position: relative;
+    background-color: black;
+}
+
+.input {
+    background-color: #260063;
+}
+
+
+/* Custom font-size*/
+
+a {
+    font-size: 15px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+
+/* Custom text*/
+
+.text-light {
+    color: var(--light) !important;
+}
+
+
+/* Custom dark 1*/
+
+.bg-dark {
+    background-color: var(--dark) !important;
+}
+
+
+/* Custom dark 2*/
+
+.bg-dark-x {
+    background-color: var(--dark-x);
+}
+
+
+/* Custom Button Metrics*/
+
+.btn {
+    min-height: 3.125rem;
+    font-weight: 600;
+}
+
+
+/*Customs Inputs */
+
+#input_email_sign_in::placeholder {
+    color: #656368;
+}
+
+#input_password_sign_in::placeholder {
+    color: #656368;
+}
+
+#input_password_sign_in .mat-form-field-hide-toggle:not(.mat-form-field-hide-toggle-active) .material-icons {
+    color: white !important;
+}
+
+#create_new_account:hover {
+    text-decoration: underline !important;
+}
+
+.eye-icon {
+    color: white;
+    /* Cambia el color del icono a blanco */
+}
+
+
+/**Customs Text**/
+
+#emailHelp {
+    font-weight: bold;
+    border: 50px;
+    border-radius: 50px;
+}
+
+#emailHelp:hover {
+    color: #e3e3e3 !important;
+}
+
+
+/* Custom Form*/
+
+.form-control {
+    min-height: 3.125rem;
+    line-height: initial;
+}
+
+.form-control:focus {
+    background-color: var(--dark-x);
+    outline: none;
+}
+
+
+/* Custom Image 1*/
+
+.img-1 {
+    background-image: url('/assets/images/img-2.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 715px;
+
+
+}
+
+
+/* Custom Image 2*/
+
+.img-2 {
+    background-image: url('/assets/images/img-2.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 715px;
+    text-align: center;
+}
+
+
+/* change input left side border-radius */
+
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+    border-top-left-radius: var(--mdc-shape-small, 12px) !important;
+    border-bottom-left-radius: var(--mdc-shape-small, 12px) !important;
+}
+
+
+/* change input right side border-radius */
+
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+    border-top-right-radius: var(--mdc-shape-small, 12px) !important;
+    border-bottom-right-radius: var(--mdc-shape-small, 12px) !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: white;
+}
+
+
+/* Font color */
+
+input.mat-input-element {
+    color: white;
+}
+
+
+/* Animation Button */
+
+#buttonlogin {
+    border: none;
+    background-color: #211b2b;
+    color: #fff;
+    border-radius: 40px !important;
+    box-shadow: inset 0 0 0 #23033e;
+    transition: ease-out 0.3;
+    outline: none;
+}
+
+#buttonlogin:hover {
+    box-shadow: inset 1000px 0 0 0 #260063;
+    cursor: pointer;
+    color: #ffffff;
+}
+/* icon image*/
+.img-fluid{
+    height: 30px;
+    width: 30px;
+}
+
+/* Loader */
+
+#bar {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 99%;
+    height: 4px;
+    top: 1%;
+    left: 50%;
+    background: #3a2f4b;
+    overflow: hidden;
+    border: 30px;
+    border-radius: 50px;
+}
+
+#bar.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#bar div::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    background: #30005a;
+    animation: Line1 2100ms cubic-bezier(0.65, 0.81, 0.73, 0.4) infinite;
+}
+
+@keyframes Line1 {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+    60%,
+    100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+#bar div:after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #211b2b;
+    animation: Line2 2100ms cubic-bezier(0.16, 0.84, 0.44, 1) infinite;
+    animation-delay: 1150ms;
+}
+
+@keyframes Line2 {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+    60%,
+    100% {
+        left: 107%;
+        right: -8%;
+    }
+}
+
+@media (min-width: 992px) {
+    #bar {
+        top: 1%;
+        left: 79%;
+        width: 41%;
+        height: 4px;
+    }
+}
