@@ -28,5 +28,6 @@ export class SigninService {
   logout() {
     localStorage.removeItem('authToken');
     this.router.navigate(['/'])
-  } 
+  }
+   
 }
