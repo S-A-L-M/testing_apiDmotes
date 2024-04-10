@@ -15,14 +15,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
       
     });
-    console.log("Trabajandooooo");
+    // console.log("Trabajandooooo");
     console.log(authToken);
-    console.log(request.headers, request.params);
-    
-    
-    // console.log(authToken);
-    
-    
+    // console.log(request.headers, request.params);
+
     return next.handle(authRequest).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
